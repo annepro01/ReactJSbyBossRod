@@ -1,0 +1,26 @@
+.todolist-main {
+    display: grid;
+    row-gap: 10px;
+
+    .form-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        column-gap: 10px;
+    }
+    .table-main {
+        display: grid;
+        grid-template-rows: 50px;
+        grid-auto-flow: 30px;
+        .header-wrapper {
+            display: grid;
+            grid-auto-flow: column;
+            place-items: center;
+            border: 1px solid black;
+        }
+        .row-wrapper {
+            display: grid;
+            grid-template-columns: 1fr repeat(2, 80px);
+            column-gap: 5px;
+        }
+    }
+}

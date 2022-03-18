@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "style.scss",
+        "_Application.scss",
+        "_Home.scss",
+        "_Todolist.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}
