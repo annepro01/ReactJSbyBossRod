@@ -13,8 +13,8 @@ const Todoitem = props => {
     return (
         <div  className="row-wrapper">
             <span> Do my homework</span>
-            <button>Edit</button>
-            <button onClick={()=>deleteTodo(index)}>Delete</button>
+            <button onClick = {() => handleOnClickEdit(index, value)}>Edit</button>
+            <button onClick = {() => deleteTodo(index)}>Delete</button>
         </div>
     )
 }

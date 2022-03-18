@@ -15,8 +15,34 @@ const Todolist = () => {
     })
       /* DECONSTRUCT */ 
         
+        const [edit, setEdit]  = useState ({
+            editTodo:'',
+            editIndex:''
+        })
+        const [isUpdate,setIsUpdate] = useState(false)
 
-        const { todo, isUpdate, todolist } = state
+
+
+        const { todo, todolist } = state
+        const { editTodo, editIndex } = edit
+
+        const handleOnChangeEdit = (e) => {
+            const { name, value } = e.target
+            
+            setEdit({...edit, [name]: value})
+            // setState({todo: '', todo: value})
+        }
+
+        handleOnClickEdit = (index, value) => {
+            setIsUpdate(true)
+            setEdit({editTodo: value, editIndex: index})
+        }
+
+        handleOnClickCancel= () => {
+            setIsUpdate(false)
+        }
+
+
 
         const handleOnChange = (e) => {
             const { name, value } = e.target
@@ -44,7 +70,14 @@ const Todolist = () => {
 
 
      /* UPDATE */     
-        
+        const updateTodo = (index) => {
+            const list = todolist // [] -current no input
+            list[index] = editTodo// [] -current - updated value
+
+
+            // setState({todo:'',todolist: list}) // you can also use these if therse and text input 
+            setState({...state,todolist: list})
+        }
 
 
     return (
@@ -74,6 +107,7 @@ const Todolist = () => {
                             index={index}
                             value={value}
                             deleteTodo={deleteTodo}
+                            handleOnClickEdit={handleOnClickEdit}
                         />
                         )
                         // {return (
@@ -88,14 +122,16 @@ const Todolist = () => {
                     {
                         isUpdate ? 
                             <div className="form-wrapper">
+                                <span>Index: {editIndex}</span>
                                 <input 
                                 type="text" 
-                                name="todo"
+                                name="editTodo"
                                 placeholder="Update Todo"
-                                value={todo}
-                                onChange={handleOnChange}     
+                                value={editTodo}
+                                onChange={handleOnChangeEdit}     
                                  />    
-                               
+                               <button onClick={() => updateTodo(editIndex)}> Update</button>
+                               <button onClick={handleOnClickCancel}> Cancel</button>
                              </div> : ''
                     }
                 </div>
